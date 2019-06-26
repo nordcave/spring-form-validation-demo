@@ -2,6 +2,7 @@ package dev.nord.springdemo.domain.test;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import dev.nord.springdemo.validation.test.AgeConstraint;
@@ -15,8 +16,20 @@ public class OrganizationRepresentative {
 	@Size(min=3, max=10, message="* Surname: min 3 characters required, max 10 characters allowed")
 	private String lastName;
 	
-	@AgeConstraint
+	@AgeConstraint(lower=20, upper=70, message="* Age: range 20 to 70 only")
 	private Integer age;
+	
+	@NotBlank(message="* ZipCode: cannot be empty")
+	@Pattern(regexp="^[a-zA-Z-0-9]{6}", message="* Zipcode: 6 characters and/or digits only")
+	private String zipCode;
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
 
 	public String getLastName() {
 		return lastName;
