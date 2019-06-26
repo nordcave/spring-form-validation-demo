@@ -6,6 +6,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import dev.nord.springdemo.validation.test.AgeConstraint;
+import dev.nord.springdemo.validation.test.EmailVerification;
 
 public class OrganizationRepresentative {
 	
@@ -22,6 +23,17 @@ public class OrganizationRepresentative {
 	@NotBlank(message="* ZipCode: cannot be empty")
 	@Pattern(regexp="^[a-zA-Z-0-9]{6}", message="* Zipcode: 6 characters and/or digits only")
 	private String zipCode;
+	
+	@EmailVerification(message="* Email is invalid")
+	private String email;
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getZipCode() {
 		return zipCode;
