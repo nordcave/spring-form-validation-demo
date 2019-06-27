@@ -7,7 +7,19 @@ import javax.validation.constraints.Size;
 
 import dev.nord.springdemo.validation.test.AgeConstraint;
 import dev.nord.springdemo.validation.test.EmailVerification;
+import dev.nord.springdemo.validation.test.FieldsVerification;
 
+@FieldsVerification.List({
+	@FieldsVerification(
+			field = "email",
+			fieldMatch = "verifyEmail",
+			message = "* Email addresses do not match"),
+	@FieldsVerification(
+			field = "password",
+			fieldMatch = "verifyPassword",
+			message = "* Passwords do not match")
+	
+})
 public class OrganizationRepresentative {
 	
 	@NotBlank(message="* First Name: cannot be blank")
@@ -26,6 +38,9 @@ public class OrganizationRepresentative {
 	
 	@EmailVerification(message="* Email is invalid")
 	private String email;
+	private String verifyEmail;
+	private String password;
+	private String verifyPassword;
 
 	public String getEmail() {
 		return email;
@@ -65,6 +80,30 @@ public class OrganizationRepresentative {
 
 	public void setAge(Integer age) {
 		this.age = age;
+	}
+
+	public String getVerifyEmail() {
+		return verifyEmail;
+	}
+
+	public void setVerifyEmail(String verifyEmail) {
+		this.verifyEmail = verifyEmail;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getVerifyPassword() {
+		return verifyPassword;
+	}
+
+	public void setVerifyPassword(String verifyPassword) {
+		this.verifyPassword = verifyPassword;
 	}
 
 }
